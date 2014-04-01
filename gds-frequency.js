@@ -3,15 +3,6 @@
 ExemplarData = new Array();
 ExemplarTimers = new Array();
 
-// Pulse function
-function pulse(id) {
-
-console.log(id);
-
-  $('#' + id).animate({ color: "#000000" }, 200);
-  $('#' + id).animate({ color: "#909090" }, 200);
-}
-
 // onLoad function
 $(function() {
 
@@ -36,8 +27,16 @@ $(function() {
  
     // Kick off the pulsing
     for (var key in ExemplarData) {
+    
 console.log(ExemplarData[key] - 400);
-      ExemplarTimers[key] = setInterval(pulse(key), ExemplarData[key] - 400);
+    
+      ExemplarTimers[key] = setInterval(function() {
+        $('#' + key).animate({ color: "#000000" }, 200);
+        $('#' + key).animate({ color: "#909090" }, 200);
+      }, ExemplarData[key] - 400);
+      
+console.log(key);
+      
     }
   });
 

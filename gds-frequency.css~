@@ -1,9 +1,0 @@
-.exemplar
-{
-width: 45%;
-font-size: 150%;
-color: #909090 ;
-float: left;
-margin: 5px;
-border-style: solid;
-}
