@@ -27,7 +27,6 @@ $(function() {
 
     var pulse = function(key) {
       return function() {
-        console.log(key);
         $('#' + key).animate({ color: "#000000" }, 200);
         $('#' + key).animate({ color: "#909090" }, 200);
       };
