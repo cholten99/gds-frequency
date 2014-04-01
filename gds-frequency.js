@@ -8,10 +8,10 @@ $(function() {
 
   // Connect to Firebase
   var firebaseRef = new Firebase("https://blazing-fire-4598.firebaseio.com/gds-frequency");
-  
+
   // Initial page setup and page change event capture
   firebaseRef.on('value', function(snapshot) {
-  
+
     var returnedObject = snapshot.val();
     var contentString= "";
 
@@ -24,19 +24,18 @@ $(function() {
 
     // Update the HTML to add all the DIVs
     $('#exemplarList').html(contentString);
- 
-    // Kick off the pulsing
-    for (var key in ExemplarData) {
-    
-console.log(ExemplarData[key] - 400);
-    
-      ExemplarTimers[key] = setInterval(function() {
+
+    var pulse = function(key) {
+      return function() {
+        console.log(key);
         $('#' + key).animate({ color: "#000000" }, 200);
         $('#' + key).animate({ color: "#909090" }, 200);
-      }, ExemplarData[key] - 400);
-      
-console.log(key);
-      
+      };
+    };
+
+    // Kick off the pulsing
+    for (var key in ExemplarData) {
+      ExemplarTimers[key] = setInterval(pulse(key), ExemplarData[key] - 400);
     }
   });
 
